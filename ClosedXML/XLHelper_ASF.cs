@@ -96,9 +96,14 @@ namespace ClosedXML.Excel
             }
 
             int len = sheetName.Length;
-            if (len < 1 || len > MaxWorksheetNameCharsCount)
+            if (len < 1)
             {
-                throw new ArgumentException($"sheetName '{sheetName}' is invalid - character count MUST be greater than or equal to 1 and less than or equal to {MaxWorksheetNameCharsCount}");
+                throw new ArgumentException($"sheetName '{sheetName}' is invalid - character count MUST be greater than or equal to 1");
+            }
+            
+            if (len > MaxWorksheetNameCharsCount)
+            {
+                throw new ArgumentException($"sheetName '{sheetName}' is invalid - character count MUST be less than or equal to {MaxWorksheetNameCharsCount}");
             }
 
             for (int i = 0; i < len; i++)
